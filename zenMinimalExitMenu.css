@@ -1,17 +1,29 @@
+/* ---------- TITLEBAR BUTTON BOX ---------- */
 .titlebar-buttonbox {
-    margin-right: 20px;
+    margin-right: 16px; /* Tighter spacing for modern look */
+    display: flex;
+    gap: 6px; /* Add spacing between buttons */
 }
 
+/* ---------- BASE STYLE FOR ALL BUTTONS ---------- */
 .titlebar-button {
-    padding: 0px !important;
-    min-height: 13px !important;
-    min-width: 13px !important;
+    padding: 0 !important;
+    width: 14px !important;
+    height: 14px !important;
+    min-width: 14px !important;
+    min-height: 14px !important;
+    margin-left: 4px !important;
     align-self: center;
-    margin-left: 5px !important;
-    border-radius: 50px;
-    transition: all 100ms;
+    border-radius: 50% !important;
+    transition: transform 120ms ease, filter 120ms ease;
 }
 
+/* ---------- REMOVE DEFAULT ICONS ---------- */
+.titlebar-button > image {
+    visibility: collapse !important;
+}
+
+/* ---------- INDIVIDUAL BUTTON COLORS ---------- */
 .titlebar-min {
     background-color: hsl(130, 50%, 40%) !important;
 }
@@ -24,34 +36,35 @@
     background-color: hsl(0, 50%, 50%) !important;
 }
 
-.titlebar-button > image {
-    visibility: collapse !important;
-}
-
+/* ---------- WHEN MACOS STYLE IS ENABLED ---------- */
 @media (-moz-bool-pref: "theme.zen-minimal-exit-menu.enable-macos-identic") {
     .titlebar-button:hover {
         opacity: 0.25 !important;
+        transform: scale(1.05);
     }
 }
 
+/* ---------- DEFAULT (NON-MACOS) BEHAVIOR ---------- */
 @media not (-moz-bool-pref: "theme.zen-minimal-exit-menu.enable-macos-identic") {
     .titlebar-button {
         background-color: var(--zen-colors-border) !important;
     }
-    
+
     .titlebar-min:hover {
-        background-color: hsl(130, 50%, 40%) !important;
+        background-color: hsl(130, 50%, 45%) !important;
     }
 
-    .titlebar-max:hover, .titlebar-restore:hover {
-        background-color: hsl(60, 50%, 50%) !important;
+    .titlebar-max:hover,
+    .titlebar-restore:hover {
+        background-color: hsl(60, 50%, 55%) !important;
     }
 
     .titlebar-close:hover {
-        background-color: hsl(0, 50%, 50%) !important;
+        background-color: hsl(0, 50%, 55%) !important;
     }
-    
+
     .titlebar-button:hover {
-        min-height: 20px !important;
+        transform: scale(1.2);
+        filter: brightness(1.2);
     }
 }
